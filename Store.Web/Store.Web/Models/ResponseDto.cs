@@ -1,0 +1,15 @@
+﻿using Newtonsoft.Json;
+
+namespace Store.Web.Models;
+public class ResponseDto
+{
+    public bool IsSuccess { get; set; } = true;
+    public object Result { get; set; }
+    public string DisplayMessage { get; set; } = string.Empty;
+    public List<string> ErrorMessages { get; set; }
+
+    public T GetResult<T>()
+    {
+        return JsonConvert.DeserializeObject<T>(Convert.ToString(Result));
+    }
+}
